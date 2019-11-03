@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://wongziwing.github.io/</id>
     <title>Gridea</title>
-    <updated>2019-10-31T15:38:56.651Z</updated>
+    <updated>2019-11-03T14:11:47.320Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://wongziwing.github.io/"/>
     <link rel="self" href="https://wongziwing.github.io//atom.xml"/>
@@ -11,12 +11,24 @@
     <icon>https://wongziwing.github.io//favicon.ico</icon>
     <rights>All rights reserved 2019, Gridea</rights>
     <entry>
-        <title type="html"><![CDATA[test]]></title>
+        <title type="html"><![CDATA[linux控制台艺术字]]></title>
         <id>https://wongziwing.github.io//post/test</id>
         <link href="https://wongziwing.github.io//post/test">
         </link>
         <updated>2019-10-31T14:29:06.000Z</updated>
-        <content type="html"><![CDATA[<p>1231231231</p>
+        <content type="html"><![CDATA[<h5>sudo apt-get install figlet</h5>
+安装 figlet
+<br/>
+命令: figlet gg
+<br/>
+效果:
+<pre>
+  __ _  __ _ 
+ / _` |/ _` |
+| (_| | (_| |
+ \__, |\__, |
+ |___/ |___/ 
+ </pre>
 ]]></content>
     </entry>
     <entry>
