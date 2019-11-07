@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" >
 
-<title>关于 | Gridea</title>
+<title>huffmanTree | Gridea</title>
 <meta name="description" content="温故而知新">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -98,20 +98,72 @@
       <div class="main-container">
         <div class="content-container" data-aos="fade-up">
           <div class="post-detail">
-            <h2 class="post-title">关于</h2>
-            <div class="post-date">2019-01-25</div>
+            <h2 class="post-title">huffmanTree</h2>
+            <div class="post-date">2019-11-07</div>
             
             <div class="post-content">
-              <blockquote>
-<p>欢迎来到我的小站呀，很高兴遇见你！🤝</p>
-</blockquote>
-<h2 id="关于本站">🏠 关于本站</h2>
-<h2 id="博主是谁">👨‍💻 博主是谁</h2>
-<h2 id="兴趣爱好">⛹ 兴趣爱好</h2>
-<h2 id="联系我呀">📬 联系我呀</h2>
+              <p>前几天上课讲了huffmanTree树的实现原理<br>
+现在有空就用代码简单实现一遍<br>
+首先解释一遍基本思想<br>
+1 将所有节点存入一个数组/链表中,从中找出两个最小值,并且组成一个新节点<br>
+2 将上述中的两个最小值删除,将新节点加入数组/链表中<br>
+3 重复1-2步骤,直到数组/链表剩下1个节点</p>
+<p style="font-size:12px">下面代码模仿网上实现,效率并不高</p>
+<pre style="font-size:12px">
+<pre><code>public static Node create(Node[] nodeArray){
+
+    int num = 0;
+    int len = nodeArray.length;
+
+    /*
+        此处运用简单的冒泡排序
+     */
+
+    while(num &lt; len - 1){
+        for (int i = num; i &lt; len; i++){
+            int min = i;
+            for (int j = i+1; j &lt; len; j++){
+                if (nodeArray[min].value &gt; nodeArray[j].value){
+                    min = j;
+                }
+            }
+            swap(nodeArray, i, min);
+        }
+        int newNodeValule = nodeArray[num].value + nodeArray[num+1].value;
+        Node newNode = new Node(&quot;分支&quot;, newNodeValule, nodeArray[num], nodeArray[num + 1]);
+        nodeArray[++num] = newNode;
+    }
+    return nodeArray[num];
+
+}
+</code></pre>
+</pre>
+<hr/>
+<h6>有空待补</h6>
 
             </div>
             
+              <div class="tag-container">
+                
+                  <a href="https://wongziwing.github.io//tag/7j7FFjPbi" class="tag">
+                    huffmantree
+                  </a>
+                
+                  <a href="https://wongziwing.github.io//tag/z754LXr6jW" class="tag">
+                    数据结构
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://wongziwing.github.io//post/linux控制台艺术字">
+                  <h3 class="post-title">
+                    linux控制台艺术字
+                  </h3>
+                </a>
+              </div>
             
 
             
