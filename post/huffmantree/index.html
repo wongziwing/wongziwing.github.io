@@ -9,7 +9,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://wongziwing.github.io//favicon.ico?v=1573137007638">
+<link rel="shortcut icon" href="https://wongziwing.github.io//favicon.ico?v=1573373184783">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://wongziwing.github.io//styles/main.css">
 
@@ -30,7 +30,7 @@
   <div class="top-container" data-aos="fade-right">
     <div class="top-header-container">
       <a class="site-title-container" href="https://wongziwing.github.io/">
-        <img src="https://wongziwing.github.io//images/avatar.png?v=1573137007638" class="site-logo">
+        <img src="https://wongziwing.github.io//images/avatar.png?v=1573373184783" class="site-logo">
         <h1 class="site-title">Gridea</h1>
       </a>
       <div class="menu-btn" @click="menuVisible = !menuVisible">
@@ -103,43 +103,112 @@
             
             <div class="post-content">
               <p>前几天上课讲了huffmanTree树的实现原理<br>
-现在有空就用代码简单实现一遍<br>
-首先解释一遍基本思想<br>
+现在有空就用代码简单实现一遍</p>
+<!-- more -->
+<p>首先解释一遍实现huffmanTree基本思想<br>
 1 将所有节点存入一个数组/链表中,从中找出两个最小值,并且组成一个新节点<br>
 2 将上述中的两个最小值删除,将新节点加入数组/链表中<br>
 3 重复1-2步骤,直到数组/链表剩下1个节点</p>
-<p style="font-size:12px">下面代码模仿网上实现,效率并不高</p>
+<p>定义一下Node节点属性<br>
+<code>String data</code>     存放数据,可以使用泛型<br>
+<code>int weight</code>      权重<br>
+<code>Node leftNode</code>   左节点<br>
+<code>Node rightNode</code>  右节点<br>
+<code>String encode</code>   编码</p>
+<p style="font-size:12px">构造huffmanTree</p>
 <pre style="font-size:12px">
-<pre><code>public static Node create(Node[] nodeArray){
+<pre><code>/**
+ *
+ * @param nodeList  存入一个node链表
+ * @return          根节点
+ */
+public Node create(LinkedList&lt;Node&gt; nodeList){
 
-    int num = 0;
-    int len = nodeArray.length;
+    int len = nodeList.size();
+    Collections.sort(nodeList);
 
-    /*
-        此处运用简单的冒泡排序
-     */
 
-    while(num &lt; len - 1){
-        for (int i = num; i &lt; len; i++){
-            int min = i;
-            for (int j = i+1; j &lt; len; j++){
-                if (nodeArray[min].value &gt; nodeArray[j].value){
-                    min = j;
-                }
+    for (int i = 1; i &lt; len; i++){
+
+        int index = 0;
+        Node node1 = nodeList.remove(0);
+        Node node2 = nodeList.remove(0);
+
+
+        int newNodeWeight = node1.getWeight() + node2.getWeight();
+        Node newnode = new Node(newNodeWeight);
+        newnode.setLeftNode(node1);
+        newnode.setRightNode(node2);
+        newnode.setData(&quot;父节点&quot;);
+
+        while (true){
+            if (index == nodeList.size() || newnode.getWeight() &lt; nodeList.get(index).getWeight()){
+                nodeList.add(index,newnode);
+                break;
             }
-            swap(nodeArray, i, min);
+            index++;
         }
-        int newNodeValule = nodeArray[num].value + nodeArray[num+1].value;
-        Node newNode = new Node(&quot;分支&quot;, newNodeValule, nodeArray[num], nodeArray[num + 1]);
-        nodeArray[++num] = newNode;
+
     }
-    return nodeArray[num];
+
+    return nodeList.get(0);
+</code></pre>
+<p>}</p>
+</pre>
+<hr/>
+<h3>算法的思想:</h3><br/>
+<p>
+    先进行一遍排序,自然最小的两个数在0,1两个位置,删除头两个Node节点,并组成一个新节点,再用新节点从头开始比较,遇到比它大的数就停下来,自然也是有序的,最后返回一个根节点,就可以通过根节点对其他节点进行编码;
+</p>
+<p>对节点进行编码很简单,定义一下编码,记向左为0,向右为1,一直递归到左右都没有节点</p>
+<pre>
+<pre><code>/**
+ *
+ * @param node          根节点
+ * @param leftcode      左节点编码
+ * @param rightcode     右节点编码
+ * @param code          初始的编码
+ */
+public void encode(Node node, String leftcode, String rightcode, String code){
+    if (node.getLeftNode() != null){
+        String temp = code + leftcode;
+        encode(node.getLeftNode(), leftcode, rightcode, temp);
+    }
+
+    if (node.getRightNode() != null){
+        String temp = code + rightcode;
+        encode(node.getRightNode(), leftcode, rightcode, temp);
+    }
+
+    if (node.getLeftNode() == null || node.getRightNode() == null){
+        node.setEncode(code);
+    }
+
 
 }
 </code></pre>
 </pre>
 <hr/>
-<h6>有空待补</h6>
+<p>最后再打印一下节点</p>
+<pre>
+<pre><code>/**
+ *
+ * @param root 树的根节点
+ */
+public void printAllNode(Node root){
+    //先序遍历
+    System.out.println(root.getData() + &quot; -&gt; &quot; + root.getEncode());
+    if (root.getLeftNode() != null){
+        printAllNode(root.getLeftNode());
+    }
+    if (root.getRightNode() != null){
+        printAllNode(root.getRightNode());
+    }
+
+}
+</code></pre>
+</pre>
+一棵简易的huffmanTree就完成了
 
             </div>
             
