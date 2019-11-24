@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://wongziwing.github.io/</id>
     <title>ymq</title>
-    <updated>2019-11-14T11:23:14.127Z</updated>
+    <updated>2019-11-24T05:03:27.130Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://wongziwing.github.io/"/>
     <link rel="self" href="https://wongziwing.github.io//atom.xml"/>
@@ -10,6 +10,75 @@
     <logo>https://wongziwing.github.io//images/avatar.png</logo>
     <icon>https://wongziwing.github.io//favicon.ico</icon>
     <rights>All rights reserved 2019, ymq</rights>
+    <entry>
+        <title type="html"><![CDATA[java之基本反射]]></title>
+        <id>https://wongziwing.github.io//post/java-zhi-ji-ben-fan-she</id>
+        <link href="https://wongziwing.github.io//post/java-zhi-ji-ben-fan-she">
+        </link>
+        <updated>2019-11-24T04:57:46.000Z</updated>
+        <summary type="html"><![CDATA[<p>刚开始学spring,其中涉及到java反射的知识,就简单的总结一下反射的基本使用.</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>刚开始学spring,其中涉及到java反射的知识,就简单的总结一下反射的基本使用.</p>
+<!-- more -->
+<h3 id="获取字节码的三种方法">获取字节码的三种方法</h3>
+<pre><code>Class.forName(&quot;name&quot;);        //通过类名来获取
+Name.class;
+new Name().getClass();
+</code></pre>
+<h3 id="获取实例">获取实例</h3>
+<pre><code>Class clazz = Class.forName(&quot;name&quot;);
+ clazz.newInstance();    //获取无参实例
+Constructor c = clazz.getConstructor(Strng.class,int.class);     //相同于占位符，表示有参数列表有String,int两个参数
+Person p = (Person)c.newInstance(&quot;a&quot;,1);       //然后直接传参就ok
+</code></pre>
+<h3 id="获取类中字段">获取类中字段</h3>
+<pre><code>Field f = Class.getFiled(&quot;name&quot;);     //获取类中name这个字段(可见的)
+Field f2 = Class.getDeclredField(&quot;name&quot;);      //获得类中字段(不可见的),暴力反射
+</code></pre>
+<h3 id="设置类中字段">设置类中字段</h3>
+<pre><code>***正常操作
+f.set(p,&quot;tom&quot;);     //将p中的name字段的值修改为tom
+***私有操作
+f2.setAccessible(true);     //去除私有权限
+f2.set(p,&quot;tom&quot;);
+</code></pre>
+<h3 id="获取运行类中的方法">获取运行类中的方法</h3>
+<pre><code>Method m = clazz.getMethod(&quot;print&quot;);      //获取类中的方法
+m.invoke(p);        //运行p中print方法
+Method m2 = clazz.getMethod(&quot;print&quot;,param);     //获取带有参数的方法
+m.invoke(p,&quot;hello&quot;);        //传入参数运行方法
+</code></pre>
+<blockquote>
+<p>擦除ArrayList泛型(例子)</p>
+</blockquote>
+<pre><code>1、创建list对象
+2、获取list对象的Class文件
+3、获取list中的方法
+4、运用invoke()方法添加数据
+
+ArrayList&lt;Integer&gt; list = new ArrayList&lt;&gt;();
+Class clazz = Class.forName(&quot;java.util.ArrayList&quot;);
+Method m = clazz.getMethod(&quot;add&quot;,Object.class);     //获得ArrayList中带有一个参数的add方法
+m.invoke(m,&quot;abc&quot;);      //就可以在list中加入String类型数据
+</code></pre>
+<blockquote>
+<p>将反射操作封装成方法</p>
+</blockquote>
+<pre><code>/*
+    @param:obj              要操作的对象
+    @param:propertyName     改变字段名称
+    @param:value            赋予字段的值
+*/
+public void setProperty(Object obj,String propertyName, Object value){
+    
+    Class clazz = obj.getClass();       //获取obj的字节码
+    Filed f = clazz.getDeclaredField(propertyName);     //暴力反射obj对象中propertyName字段
+    f.setAccessible(true);      //去除私有属性
+    f.set(clazz,value);     //将propertyName属性赋值为value
+}
+</code></pre>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[huffmanTree]]></title>
         <id>https://wongziwing.github.io//post/huffmantree</id>
