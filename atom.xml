@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://wongziwing.github.io/</id>
     <title>ymq</title>
-    <updated>2019-11-27T09:11:52.876Z</updated>
+    <updated>2019-11-27T09:14:03.983Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://wongziwing.github.io/"/>
     <link rel="self" href="https://wongziwing.github.io//atom.xml"/>
@@ -11,7 +11,7 @@
     <icon>https://wongziwing.github.io//favicon.ico</icon>
     <rights>All rights reserved 2019, ymq</rights>
     <entry>
-        <title type="html"><![CDATA[deeping将软件添加到启动器]]></title>
+        <title type="html"><![CDATA[deepin将软件添加到启动器]]></title>
         <id>https://wongziwing.github.io//post/launcher</id>
         <link href="https://wongziwing.github.io//post/launcher">
         </link>
