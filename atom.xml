@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://wongziwing.github.io/</id>
     <title>ymq</title>
-    <updated>2019-11-24T14:21:41.491Z</updated>
+    <updated>2019-11-27T09:07:16.155Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://wongziwing.github.io/"/>
     <link rel="self" href="https://wongziwing.github.io//atom.xml"/>
@@ -10,6 +10,37 @@
     <logo>https://wongziwing.github.io//images/avatar.png</logo>
     <icon>https://wongziwing.github.io//favicon.ico</icon>
     <rights>All rights reserved 2019, ymq</rights>
+    <entry>
+        <title type="html"><![CDATA[deeping将软件添加到启动器]]></title>
+        <id>https://wongziwing.github.io//post/launcher</id>
+        <link href="https://wongziwing.github.io//post/launcher">
+        </link>
+        <updated>2019-11-27T08:41:55.000Z</updated>
+        <content type="html"><![CDATA[<p>今天发现启动器的eclipse不见了<br>
+作为一个强迫症患者<br>
+这不能接受!<br>
+话不多说,直接开干</p>
+<p>切换到:<code>/usr/share/applications</code><br>
+创建一个文件<code>vim name.desktop</code> //name可以随便取<br>
+输入以下内容:</p>
+<pre><code>
+[Desktop Entry]
+Version=1.0                         # 版本号
+Name=Firefox                        # 将要在启动器显示的名字
+Comment=a web browser               # 描述
+Exec=/home/xx/eclipse               # 可执行程序路径
+Icon=/home/Icon.xpm                 # 程序图标路径
+Terminal=false                      # 是否以终端启动
+Type=Application                    # 类型
+Categories=IDE;                     # 在启动器中的分类
+
+</code></pre>
+<p>写入数据后可能保存不了<br>
+可以用命令<code>:w !sudo tee %</code> 强制写入<br>
+再打开启动器就发现添加成功了<br>
+😃</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[java之基本反射]]></title>
         <id>https://wongziwing.github.io//post/simple-reflection</id>

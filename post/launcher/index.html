@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" >
 
-<title>文章归档 | ymq</title>
+<title>deeping将软件添加到启动器 | ymq</title>
 <meta name="description" content="温故而知新">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -97,83 +97,59 @@
 
       <div class="main-container">
         <div class="content-container" data-aos="fade-up">
-          
+          <div class="post-detail">
+            <h2 class="post-title">deeping将软件添加到启动器</h2>
+            <div class="post-date">2019-11-27</div>
+            
+            <div class="post-content">
+              <p>今天发现启动器的eclipse不见了<br>
+作为一个强迫症患者<br>
+这不能接受!<br>
+话不多说,直接开干</p>
+<p>切换到:<code>/usr/share/applications</code><br>
+创建一个文件<code>vim name.desktop</code> //name可以随便取<br>
+输入以下内容:</p>
+<pre><code>
+[Desktop Entry]
+Version=1.0                         # 版本号
+Name=Firefox                        # 将要在启动器显示的名字
+Comment=a web browser               # 描述
+Exec=/home/xx/eclipse               # 可执行程序路径
+Icon=/home/Icon.xpm                 # 程序图标路径
+Terminal=false                      # 是否以终端启动
+Type=Application                    # 类型
+Categories=IDE;                     # 在启动器中的分类
 
-          <h2 class="archives-title">文章归档</h2>
-          <div class="archives-container">
+</code></pre>
+<p>写入数据后可能保存不了<br>
+可以用命令<code>:w !sudo tee %</code> 强制写入<br>
+再打开启动器就发现添加成功了<br>
+😃</p>
+
+            </div>
             
-              <h2 class="year" data-aos="fade-in" data-aos-delay="500">2019</h2>
-              
+              <div class="tag-container">
                 
-                  <article class="post">
-                    <a href="https://wongziwing.github.io//post/launcher">
-                      <h2 class="post-title">
-                        deeping将软件添加到启动器
-                      </h2>
-                    </a>
-                  </article>
+                  <a href="https://wongziwing.github.io//tag/c-kc7a4-L" class="tag">
+                    小工具
+                  </a>
                 
-              
-                
-                  <article class="post">
-                    <a href="https://wongziwing.github.io//post/simple-reflection">
-                      <h2 class="post-title">
-                        java之基本反射
-                      </h2>
-                    </a>
-                  </article>
-                
-              
-                
-                  <article class="post">
-                    <a href="https://wongziwing.github.io//post/huffmantree">
-                      <h2 class="post-title">
-                        huffmanTree
-                      </h2>
-                    </a>
-                  </article>
-                
-              
-                
-                  <article class="post">
-                    <a href="https://wongziwing.github.io//post/linux控制台艺术字">
-                      <h2 class="post-title">
-                        linux控制台艺术字
-                      </h2>
-                    </a>
-                  </article>
-                
-              
-                
-              
+              </div>
             
-              <h2 class="year" data-aos="fade-in" data-aos-delay="500">2018</h2>
-              
-                
-              
-                
-              
-                
-              
-                
-              
-                
-                  <article class="post">
-                    <a href="https://wongziwing.github.io//post/hello-gridea">
-                      <h2 class="post-title">
-                        Hello Gridea
-                      </h2>
-                    </a>
-                  </article>
-                
-              
             
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://wongziwing.github.io//post/simple-reflection">
+                  <h3 class="post-title">
+                    java之基本反射
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+
           </div>
-
-          <div class="pagination-container">
-  
-  
-</div>
 
         </div>
       </div>
