@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" >
 
-<title>java之基本反射 | ymq</title>
+<title>简单的深度搜索 | ymq</title>
 <meta name="description" content="温故而知新">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -98,80 +98,95 @@
       <div class="main-container">
         <div class="content-container" data-aos="fade-up">
           <div class="post-detail">
-            <h2 class="post-title">java之基本反射</h2>
-            <div class="post-date">2019-11-24</div>
+            <h2 class="post-title">简单的深度搜索</h2>
+            <div class="post-date">2020-03-10</div>
             
             <div class="post-content">
-              <p>刚开始学spring,其中涉及到java反射的知识,就简单的总结一下反射的基本使用.</p>
-<!-- more -->
-<h3 id="获取字节码的三种方法">获取字节码的三种方法</h3>
-<pre><code>Class.forName(&quot;name&quot;);        //通过类名来获取
-Name.class;
-new Name().getClass();
-</code></pre>
-<h3 id="获取实例">获取实例</h3>
-<pre><code>Class clazz = Class.forName(&quot;name&quot;);
- clazz.newInstance();    //获取无参实例
-Constructor c = clazz.getConstructor(Strng.class,int.class);     //相同于占位符，表示有参数列表有String,int两个参数
-Person p = (Person)c.newInstance(&quot;a&quot;,1);       //然后直接传参就ok
-</code></pre>
-<h3 id="获取类中字段">获取类中字段</h3>
-<pre><code>Field f = Class.getFiled(&quot;name&quot;);     //获取类中name这个字段(可见的)
-Field f2 = Class.getDeclredField(&quot;name&quot;);      //获得类中字段(不可见的),暴力反射
-</code></pre>
-<h3 id="设置类中字段">设置类中字段</h3>
-<pre><code>***正常操作
-f.set(p,&quot;tom&quot;);     //将p中的name字段的值修改为tom
-***私有操作
-f2.setAccessible(true);     //去除私有权限
-f2.set(p,&quot;tom&quot;);
-</code></pre>
-<h3 id="获取运行类中的方法">获取运行类中的方法</h3>
-<pre><code>Method m = clazz.getMethod(&quot;print&quot;);      //获取类中的方法
-m.invoke(p);        //运行p中print方法
-Method m2 = clazz.getMethod(&quot;print&quot;,param);     //获取带有参数的方法
-m.invoke(p,&quot;hello&quot;);        //传入参数运行方法
-</code></pre>
+              <h4 id="深度搜索的思路">深度搜索的思路</h4>
 <blockquote>
-<p>擦除ArrayList泛型(例子)</p>
+<p>一个简单小例子:</p>
+<p>给定一个起点，终点，以及中途的道路和墙壁</p>
+<p>求问，能不能从起点到终点？</p>
+<p>s代表起点，g代表终点，.代表道路，＃代表墙壁</p>
+<p>输入n，ｍ　表示有n行m列</p>
+<p>如:</p>
+<p>10 10<br>
+s.........<br>
+#########.<br>
+#.......#.<br>
+#..####.#.<br>
+##....#.#.<br>
+#####.#.#.<br>
+g.#.#.#.#.<br>
+#.#.#.#.#.<br>
+#.#.#.#.#.<br>
+#.....#...</p>
 </blockquote>
-<pre><code>1、创建list对象
-2、获取list对象的Class文件
-3、获取list中的方法
-4、运用invoke()方法添加数据
-
-ArrayList&lt;Integer&gt; list = new ArrayList&lt;&gt;();
-Class clazz = Class.forName(&quot;java.util.ArrayList&quot;);
-Method m = clazz.getMethod(&quot;add&quot;,Object.class);     //获得ArrayList中带有一个参数的add方法
-m.invoke(m,&quot;abc&quot;);      //就可以在list中加入String类型数据
+<h4 id="思路">思路</h4>
+<pre><code class="language-java">//x,y代表起点的坐标
+int n, m, x, y;
+//输入的地图
+char[][] arr;
+//判断哪些坐标已经走过
+boolean[][] flag;
+//用来向右左上下方向前进
+int[][] dir = {{0,1},{0,-1},{1,0},{-1,0}};
 </code></pre>
-<blockquote>
-<p>将反射操作封装成方法</p>
-</blockquote>
-<pre><code>/*
-    @param:obj              要操作的对象
-    @param:propertyName     改变字段名称
-    @param:value            赋予字段的值
+<pre><code class="language-java">/**
+	判断坐标是否在地图中
 */
-public void setProperty(Object obj,String propertyName, Object value){
-    
-    Class clazz = obj.getClass();       //获取obj的字节码
-    Filed f = clazz.getDeclaredField(propertyName);     //暴力反射obj对象中propertyName字段
-    f.setAccessible(true);      //去除私有属性
-    f.set(clazz,value);     //将propertyName属性赋值为value
+static boolean in(int x, int y){
+    return 0 &lt;= x &amp;&amp; x &lt; n &amp;&amp; 0 &lt;= y &amp;&amp; y &lt;=m;
 }
 </code></pre>
+<pre><code class="language-java">//深度搜索算法,由于起点必定在地图里,所以开始并不需要判断
+static boolean dfs(int x, int y){
+    if(arr[x][y] == 'g') return true;	//到达终点
+    flag[x][y] = true;					//标记
+    //很巧妙的方法,看别人写的
+    for(int i = 0; i &lt; 4; i++){
+        int tx = x + dir[i][0];
+        int ty = y + dir[i][1];
+        if(in(tx, ty) &amp;&amp; arr[tx][ty] != '#' &amp;&amp; !flag[tx][ty]){
+            //如果这个点是终点,就直接返回
+            if(dfs(tx, ty)) return true;
+        }
+    }
+    return false;
+}
+</code></pre>
+<h5 id="到此简单的深度搜索就完成了就是暴力">到此,简单的深度搜索就完成了(就是暴力)</h5>
+<h5 id="如果要搜索最短路径-只需该亿点点代码就ok了">如果要搜索最短路径, 只需该亿点点代码就ok了</h5>
+<pre><code class="language-java">int now = 0, min = 0x3f3f3f3f;		//now表示当前路径长度,min表示最短的
+</code></pre>
+<pre><code class="language-java">//算上起点的距离,不算终点的距离
+static boolean dfs(int x, int y){
+    if(arr[x][y] == 'g'){
+        min = now &lt; min ? now : min;	//将最小值赋予min
+        return;
+    }
+    flag[x][y] = true;					//标记
+    now++;	
+    //很巧妙的方法,看别人写的
+    for(int i = 0; i &lt; 4; i++){
+        int tx = x + dir[i][0];
+        int ty = y + dir[i][1];
+        if(in(tx, ty) &amp;&amp; arr[tx][ty] != '#' &amp;&amp; !flag[tx][ty]){
+			dfs(tx,ty);					//把所有点都逛一遍
+        }
+    }
+    now--;								//返回
+    flag[x][y] = false;					//回溯
+}
+</code></pre>
+<p>这样就写好了!</p>
 
             </div>
             
               <div class="tag-container">
                 
-                  <a href="https://wongziwing.github.io//tag/2NCaHl7i-" class="tag">
-                    java
-                  </a>
-                
-                  <a href="https://wongziwing.github.io//tag/kkuW1RdRHn" class="tag">
-                    反射
+                  <a href="https://wongziwing.github.io//tag/z754LXr6jW" class="tag">
+                    数据结构
                   </a>
                 
               </div>
@@ -179,9 +194,9 @@ public void setProperty(Object obj,String propertyName, Object value){
             
               <div class="next-post">
                 <div class="next">下一篇</div>
-                <a href="https://wongziwing.github.io//post/huffmantree">
+                <a href="https://wongziwing.github.io//post/launcher">
                   <h3 class="post-title">
-                    huffmanTree
+                    deepin将软件添加到启动器
                   </h3>
                 </a>
               </div>

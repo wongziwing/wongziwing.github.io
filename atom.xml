@@ -2,14 +2,100 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://wongziwing.github.io/</id>
     <title>ymq</title>
-    <updated>2019-11-27T09:14:03.983Z</updated>
+    <updated>2020-03-10T08:33:54.021Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://wongziwing.github.io/"/>
     <link rel="self" href="https://wongziwing.github.io//atom.xml"/>
     <subtitle>温故而知新</subtitle>
     <logo>https://wongziwing.github.io//images/avatar.png</logo>
     <icon>https://wongziwing.github.io//favicon.ico</icon>
-    <rights>All rights reserved 2019, ymq</rights>
+    <rights>All rights reserved 2020, ymq</rights>
+    <entry>
+        <title type="html"><![CDATA[简单的深度搜索]]></title>
+        <id>https://wongziwing.github.io//post/simpleDFS</id>
+        <link href="https://wongziwing.github.io//post/simpleDFS">
+        </link>
+        <updated>2020-03-10T08:25:23.000Z</updated>
+        <content type="html"><![CDATA[<h4 id="深度搜索的思路">深度搜索的思路</h4>
+<blockquote>
+<p>一个简单小例子:</p>
+<p>给定一个起点，终点，以及中途的道路和墙壁</p>
+<p>求问，能不能从起点到终点？</p>
+<p>s代表起点，g代表终点，.代表道路，＃代表墙壁</p>
+<p>输入n，ｍ　表示有n行m列</p>
+<p>如:</p>
+<p>10 10<br>
+s.........<br>
+#########.<br>
+#.......#.<br>
+#..####.#.<br>
+##....#.#.<br>
+#####.#.#.<br>
+g.#.#.#.#.<br>
+#.#.#.#.#.<br>
+#.#.#.#.#.<br>
+#.....#...</p>
+</blockquote>
+<h4 id="思路">思路</h4>
+<pre><code class="language-java">//x,y代表起点的坐标
+int n, m, x, y;
+//输入的地图
+char[][] arr;
+//判断哪些坐标已经走过
+boolean[][] flag;
+//用来向右左上下方向前进
+int[][] dir = {{0,1},{0,-1},{1,0},{-1,0}};
+</code></pre>
+<pre><code class="language-java">/**
+	判断坐标是否在地图中
+*/
+static boolean in(int x, int y){
+    return 0 &lt;= x &amp;&amp; x &lt; n &amp;&amp; 0 &lt;= y &amp;&amp; y &lt;=m;
+}
+</code></pre>
+<pre><code class="language-java">//深度搜索算法,由于起点必定在地图里,所以开始并不需要判断
+static boolean dfs(int x, int y){
+    if(arr[x][y] == 'g') return true;	//到达终点
+    flag[x][y] = true;					//标记
+    //很巧妙的方法,看别人写的
+    for(int i = 0; i &lt; 4; i++){
+        int tx = x + dir[i][0];
+        int ty = y + dir[i][1];
+        if(in(tx, ty) &amp;&amp; arr[tx][ty] != '#' &amp;&amp; !flag[tx][ty]){
+            //如果这个点是终点,就直接返回
+            if(dfs(tx, ty)) return true;
+        }
+    }
+    return false;
+}
+</code></pre>
+<h5 id="到此简单的深度搜索就完成了就是暴力">到此,简单的深度搜索就完成了(就是暴力)</h5>
+<h5 id="如果要搜索最短路径-只需该亿点点代码就ok了">如果要搜索最短路径, 只需该亿点点代码就ok了</h5>
+<pre><code class="language-java">int now = 0, min = 0x3f3f3f3f;		//now表示当前路径长度,min表示最短的
+</code></pre>
+<pre><code class="language-java">//算上起点的距离,不算终点的距离
+static boolean dfs(int x, int y){
+    if(arr[x][y] == 'g'){
+        min = now &lt; min ? now : min;	//将最小值赋予min
+        return;
+    }
+    flag[x][y] = true;					//标记
+    now++;	
+    //很巧妙的方法,看别人写的
+    for(int i = 0; i &lt; 4; i++){
+        int tx = x + dir[i][0];
+        int ty = y + dir[i][1];
+        if(in(tx, ty) &amp;&amp; arr[tx][ty] != '#' &amp;&amp; !flag[tx][ty]){
+			dfs(tx,ty);					//把所有点都逛一遍
+        }
+    }
+    now--;								//返回
+    flag[x][y] = false;					//回溯
+}
+</code></pre>
+<p>这样就写好了!</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[deepin将软件添加到启动器]]></title>
         <id>https://wongziwing.github.io//post/launcher</id>
