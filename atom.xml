@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <id>https://wongziwing.github.io/</id>
+    <id>http://localhost:4000</id>
     <title>thank</title>
-    <updated>2020-03-11T13:20:54.431Z</updated>
+    <updated>2020-03-11T15:43:55.434Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
-    <link rel="alternate" href="https://wongziwing.github.io/"/>
-    <link rel="self" href="https://wongziwing.github.io//atom.xml"/>
+    <link rel="alternate" href="http://localhost:4000"/>
+    <link rel="self" href="http://localhost:4000/atom.xml"/>
     <subtitle>温故而知新</subtitle>
-    <logo>https://wongziwing.github.io//images/avatar.png</logo>
-    <icon>https://wongziwing.github.io//favicon.ico</icon>
+    <logo>http://localhost:4000/images/avatar.png</logo>
+    <icon>http://localhost:4000/favicon.ico</icon>
     <rights>All rights reserved 2020, thank</rights>
     <entry>
         <title type="html"><![CDATA[简单的深度搜索]]></title>
-        <id>https://wongziwing.github.io//post/simpleDFS</id>
-        <link href="https://wongziwing.github.io//post/simpleDFS">
+        <id>http://localhost:4000/post/simpleDFS</id>
+        <link href="http://localhost:4000/post/simpleDFS">
         </link>
-        <updated>2020-03-10T08:25:23.000Z</updated>
+        <updated>2020-03-11T15:41:13.000Z</updated>
         <content type="html"><![CDATA[<h4 id="深度搜索的思路">深度搜索的思路</h4>
 <blockquote>
 <p>一个简单小例子:</p>
@@ -98,9 +98,124 @@ static boolean dfs(int x, int y){
 ]]></content>
     </entry>
     <entry>
+        <title type="html"><![CDATA[阿里云端口转发配置]]></title>
+        <id>http://localhost:4000/post/aliyunPForward</id>
+        <link href="http://localhost:4000/post/aliyunPForward">
+        </link>
+        <updated>2020-03-11T15:35:15.000Z</updated>
+        <content type="html"><![CDATA[<h4 id="看一个小例子">看一个小例子.</h4>
+<p>假设.</p>
+<p>服务器ip. <code>1.1.1.1</code></p>
+<p>域名. <code>xxx.com</code></p>
+<p>众所周知,直接访问域名会访问服务器的80端口. 如果要访问8080端口,就要加上端口号, 如 <code>xxx.com:8080</code> 但是这样太麻烦且不切实际. 仔细想想, 我们访问别人网站的时候, 并没有输入端口号, 而是通过类似 <code>test.xxx.com</code> 这样的域名, 前面的 <code>test</code> 就是我们需要设置的三级域名.</p>
+<blockquote>
+<p>本实例安全组 -&gt; 添加安全组规则 填写需要开放的端口(8080)和授权对象(一般为0.0.0.0/0)</p>
+</blockquote>
+<blockquote>
+<p>解析设置 -&gt; 添加记录 填写主机记录(test)和记录值(1.1.1.1)</p>
+</blockquote>
+<blockquote>
+<p>搞定上面2步, 我们就可以进入服务器进行配置, 为了方便好管理, 在服务器里下载 <code>nginx</code> 下载好了之后, 在根目录就有<code>nginx_conf</code> 文件夹, 进去后新建一个<code>test.conf</code> 文件</p>
+</blockquote>
+<blockquote>
+<p>写入.</p>
+</blockquote>
+<pre><code class="language-nginx">server {
+    listen 80;
+    server_name test.xxx.com;
+    #proxy_set_header Host $host;
+    #proxy_set_header X-Real-IP $remote_addr;
+    #proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    
+    location / {
+                  proxy_pass http://xxx.com:8080;
+          }
+}
+</code></pre>
+<blockquote>
+<p>说明:</p>
+</blockquote>
+<blockquote>
+<p>监听 80 端口</p>
+</blockquote>
+<blockquote>
+<p>当访问的域名是 <code>test.xxx.com</code></p>
+</blockquote>
+<blockquote>
+<p>注释的参数 不知道是什么意思 自己百度就ok</p>
+</blockquote>
+<blockquote>
+<p>设置代理路径 <code>xxx.com.8080</code></p>
+</blockquote>
+<blockquote>
+<p>我的理解是 它可以接受 <code>*.xxx.com</code> , 然后再在 <code>nginx</code> 中判断你传入的是什么三级域名, 在做转发处理</p>
+</blockquote>
+<p>这时, 你又会有新的疑问了, 我想监听8080和8081端口要怎么设置呢? 比如</p>
+<blockquote>
+<p><code>test.xxx.com</code> -&gt; <code>1.1.1.1:8080</code></p>
+</blockquote>
+<blockquote>
+<p><code>test2.xxx.com</code> -&gt; <code>1.1.1.1:8081</code></p>
+</blockquote>
+<blockquote>
+<p>你只需要修改一点就可以了</p>
+</blockquote>
+<pre><code class="language-nginx">server {
+    listen 80;
+    server_name test.xxx.com;
+    #proxy_set_header Host $host;
+    #proxy_set_header X-Real-IP $remote_addr;
+    #proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    
+    location / {
+                  proxy_pass http://xxx.com:8080;
+          }
+}
+
+server {
+    listen 80;
+    server_name test2.xxx.com;
+    #proxy_set_header Host $host;
+    #proxy_set_header X-Real-IP $remote_addr;
+    #proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    
+    location / {
+                  proxy_pass http://xxx.com:8081;
+          }
+}
+</code></pre>
+<blockquote>
+<p>上面配置代码有点重复, 应该有更好的写法, 我懒就不修改了</p>
+</blockquote>
+<h4 id="微信授权-配置cname">微信授权 配置cname</h4>
+<p>由于在慕课网上学习到微信支付授权, 需要到公众号配置安全接口, 我不会从阿里云做内网穿透, 只好从 <code>natapp</code> 买了个最便宜的隧道, 但是微信公众号需要域名备案, 只好把阿里云域名绑定到 <code>natapp</code> 中, 从阿里云转发到<code>natapp</code> 再转发到本机端口 (绕来绕去好麻烦),</p>
+<blockquote>
+<p>其实配置很简单</p>
+</blockquote>
+<blockquote>
+<p>注册并下载 <code>natapp</code>, 购买 VIP-1 型的隧道 并绑定域名</p>
+</blockquote>
+<blockquote>
+<p>前往阿里云配置 <code>cname</code> 解析设置 -&gt; 添加记录 填写主机记录(test)和记录值(<code>natapp</code> 的服务器地址)</p>
+</blockquote>
+<blockquote>
+<p>由于<code> linux </code> 解压 <code>natapp.zip</code> 后只有一个 <code>natapp</code> 文件, 每次运行输入 <code>authtoken</code> 很麻烦, 就可以写一个 <code>shell</code> 小脚本</p>
+</blockquote>
+<pre><code class="language-shell">cd /home/null/ 你的路径
+./natapp authtoken= 你的token
+</code></pre>
+<blockquote>
+<p>到这里, 访问 <code>natapp</code> 服务器 和 <code>cname</code> 应该是同一个页面了</p>
+</blockquote>
+<blockquote>
+<p>微信授权还没有测试, 就不说了😉</p>
+</blockquote>
+]]></content>
+    </entry>
+    <entry>
         <title type="html"><![CDATA[deepin将软件添加到启动器]]></title>
-        <id>https://wongziwing.github.io//post/launcher</id>
-        <link href="https://wongziwing.github.io//post/launcher">
+        <id>http://localhost:4000/post/launcher</id>
+        <link href="http://localhost:4000/post/launcher">
         </link>
         <updated>2019-11-27T08:41:55.000Z</updated>
         <content type="html"><![CDATA[<p>今天发现启动器的eclipse不见了<br>
@@ -130,8 +245,8 @@ Categories=IDE;                     # 在启动器中的分类
     </entry>
     <entry>
         <title type="html"><![CDATA[java之基本反射]]></title>
-        <id>https://wongziwing.github.io//post/simple-reflection</id>
-        <link href="https://wongziwing.github.io//post/simple-reflection">
+        <id>http://localhost:4000/post/simple-reflection</id>
+        <link href="http://localhost:4000/post/simple-reflection">
         </link>
         <updated>2019-11-24T04:57:46.000Z</updated>
         <summary type="html"><![CDATA[<p>刚开始学spring,其中涉及到java反射的知识,就简单的总结一下反射的基本使用.</p>
@@ -199,8 +314,8 @@ public void setProperty(Object obj,String propertyName, Object value){
     </entry>
     <entry>
         <title type="html"><![CDATA[huffmanTree]]></title>
-        <id>https://wongziwing.github.io//post/huffmantree</id>
-        <link href="https://wongziwing.github.io//post/huffmantree">
+        <id>http://localhost:4000/post/huffmantree</id>
+        <link href="http://localhost:4000/post/huffmantree">
         </link>
         <updated>2019-11-07T14:12:34.000Z</updated>
         <summary type="html"><![CDATA[<p>前几天上课讲了huffmanTree树的实现原理<br>
@@ -317,8 +432,8 @@ public void printAllNode(Node root){
     </entry>
     <entry>
         <title type="html"><![CDATA[linux控制台艺术字]]></title>
-        <id>https://wongziwing.github.io//post/linux控制台艺术字</id>
-        <link href="https://wongziwing.github.io//post/linux控制台艺术字">
+        <id>http://localhost:4000/post/linux控制台艺术字</id>
+        <link href="http://localhost:4000/post/linux控制台艺术字">
         </link>
         <updated>2019-10-31T14:29:06.000Z</updated>
         <content type="html"><![CDATA[<h5>sudo apt-get install figlet</h5>
@@ -338,8 +453,8 @@ public void printAllNode(Node root){
     </entry>
     <entry>
         <title type="html"><![CDATA[Hello Gridea]]></title>
-        <id>https://wongziwing.github.io//post/hello-gridea</id>
-        <link href="https://wongziwing.github.io//post/hello-gridea">
+        <id>http://localhost:4000/post/hello-gridea</id>
+        <link href="http://localhost:4000/post/hello-gridea">
         </link>
         <updated>2018-12-11T16:00:00.000Z</updated>
         <summary type="html"><![CDATA[<p>👏  欢迎使用 <strong>Gridea</strong> ！<br>
