@@ -3,15 +3,15 @@
   <head>
     <meta charset="utf-8" >
 
-<title>简单的深度搜索 | thank</title>
+<title>简单的深搜 | thank</title>
 <meta name="description" content="温故而知新">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="http://localhost:4000/favicon.ico?v=1583941431747">
+<link rel="shortcut icon" href="https://wongziwing.github.io//favicon.ico?v=1583943721822">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
-<link rel="stylesheet" href="http://localhost:4000/styles/main.css">
+<link rel="stylesheet" href="https://wongziwing.github.io//styles/main.css">
 
 
 
@@ -29,8 +29,8 @@
       <div class="sidebar" :class="{ 'full-height': menuVisible }">
   <div class="top-container" data-aos="fade-right">
     <div class="top-header-container">
-      <a class="site-title-container" href="http://localhost:4000">
-        <img src="http://localhost:4000/images/avatar.png?v=1583941431747" class="site-logo">
+      <a class="site-title-container" href="https://wongziwing.github.io/">
+        <img src="https://wongziwing.github.io//images/avatar.png?v=1583943721822" class="site-logo">
         <h1 class="site-title">thank</h1>
       </a>
       <div class="menu-btn" @click="menuVisible = !menuVisible">
@@ -64,7 +64,7 @@
         
       
         
-          <a href="http://localhost:4000/post/friends-link/" class="site-nav">
+          <a href="https://wongziwing.github.io//post/friends-link/" class="site-nav">
             友链
           </a>
         
@@ -89,7 +89,7 @@
       温故而知新
     </div>
     <div class="site-footer">
-       | <a class="rss" href="http://localhost:4000/atom.xml" target="_blank">RSS</a>
+       | <a class="rss" href="https://wongziwing.github.io//atom.xml" target="_blank">RSS</a>
     </div>
   </div>
 </div>
@@ -98,8 +98,8 @@
       <div class="main-container">
         <div class="content-container" data-aos="fade-up">
           <div class="post-detail">
-            <h2 class="post-title">简单的深度搜索</h2>
-            <div class="post-date">2020-03-11</div>
+            <h2 class="post-title">简单的深搜</h2>
+            <div class="post-date">2020-03-12</div>
             
             <div class="post-content">
               <h4 id="深度搜索的思路">深度搜索的思路</h4>
@@ -130,10 +130,10 @@ char[][] arr;
 //判断哪些坐标已经走过
 boolean[][] flag;
 //用来向右左上下方向前进
-int[][] dir = {{0,1},{0,-1},{1,0},{-1,0}};
+int[][] dir = { {0,1},{0,-1},{1,0},{-1,0} };
 </code></pre>
 <pre><code class="language-java">/**
-	判断坐标是否在地图中
+判断坐标是否在地图中
 */
 static boolean in(int x, int y){
     return 0 &lt;= x &amp;&amp; x &lt; n &amp;&amp; 0 &lt;= y &amp;&amp; y &lt;=m;
@@ -155,8 +155,8 @@ static boolean dfs(int x, int y){
     return false;
 }
 </code></pre>
-<h5 id="到此简单的深度搜索就完成了就是暴力">到此,简单的深度搜索就完成了(就是暴力)</h5>
-<h5 id="如果要搜索最短路径-只需该亿点点代码就ok了">如果要搜索最短路径, 只需该亿点点代码就ok了</h5>
+<h4 id="到此简单的深度搜索就完成了就是暴力">到此,简单的深度搜索就完成了(就是暴力)</h4>
+<h4 id="如果要搜索最短路径-只需该亿点点代码就ok了">如果要搜索最短路径, 只需该亿点点代码就ok了</h4>
 <pre><code class="language-java">int now = 0, min = 0x3f3f3f3f;		//now表示当前路径长度,min表示最短的
 </code></pre>
 <pre><code class="language-java">//算上起点的距离,不算终点的距离
@@ -172,21 +172,20 @@ static boolean dfs(int x, int y){
         int tx = x + dir[i][0];
         int ty = y + dir[i][1];
         if(in(tx, ty) &amp;&amp; arr[tx][ty] != '#' &amp;&amp; !flag[tx][ty]){
-			dfs(tx,ty);					//把所有点都逛一遍
+			dfs(tx,ty);		   			//把所有点都逛一遍
         }
     }
     now--;								//返回
     flag[x][y] = false;					//回溯
 }
 </code></pre>
-<p>这样就写好了!<br>
-大家快动手练习一遍吧!😉</p>
+<p>这样就写好了!😉</p>
 
             </div>
             
               <div class="tag-container">
                 
-                  <a href="http://localhost:4000/tag/z754LXr6jW" class="tag">
+                  <a href="https://wongziwing.github.io//tag/z754LXr6jW" class="tag">
                     数据结构
                   </a>
                 
@@ -195,7 +194,7 @@ static boolean dfs(int x, int y){
             
               <div class="next-post">
                 <div class="next">下一篇</div>
-                <a href="http://localhost:4000/post/aliyunPForward">
+                <a href="https://wongziwing.github.io//post/aliyunPForward">
                   <h3 class="post-title">
                     阿里云端口转发配置
                   </h3>

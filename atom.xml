@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <id>http://localhost:4000</id>
+    <id>https://wongziwing.github.io/</id>
     <title>thank</title>
-    <updated>2020-03-11T15:43:55.434Z</updated>
+    <updated>2020-03-11T16:22:03.400Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
-    <link rel="alternate" href="http://localhost:4000"/>
-    <link rel="self" href="http://localhost:4000/atom.xml"/>
+    <link rel="alternate" href="https://wongziwing.github.io/"/>
+    <link rel="self" href="https://wongziwing.github.io//atom.xml"/>
     <subtitle>温故而知新</subtitle>
-    <logo>http://localhost:4000/images/avatar.png</logo>
-    <icon>http://localhost:4000/favicon.ico</icon>
+    <logo>https://wongziwing.github.io//images/avatar.png</logo>
+    <icon>https://wongziwing.github.io//favicon.ico</icon>
     <rights>All rights reserved 2020, thank</rights>
     <entry>
-        <title type="html"><![CDATA[简单的深度搜索]]></title>
-        <id>http://localhost:4000/post/simpleDFS</id>
-        <link href="http://localhost:4000/post/simpleDFS">
+        <title type="html"><![CDATA[简单的深搜]]></title>
+        <id>https://wongziwing.github.io//post/shen-sou</id>
+        <link href="https://wongziwing.github.io//post/shen-sou">
         </link>
-        <updated>2020-03-11T15:41:13.000Z</updated>
+        <updated>2020-03-11T16:01:17.000Z</updated>
         <content type="html"><![CDATA[<h4 id="深度搜索的思路">深度搜索的思路</h4>
 <blockquote>
 <p>一个简单小例子:</p>
@@ -44,10 +44,10 @@ char[][] arr;
 //判断哪些坐标已经走过
 boolean[][] flag;
 //用来向右左上下方向前进
-int[][] dir = {{0,1},{0,-1},{1,0},{-1,0}};
+int[][] dir = { {0,1},{0,-1},{1,0},{-1,0} };
 </code></pre>
 <pre><code class="language-java">/**
-	判断坐标是否在地图中
+判断坐标是否在地图中
 */
 static boolean in(int x, int y){
     return 0 &lt;= x &amp;&amp; x &lt; n &amp;&amp; 0 &lt;= y &amp;&amp; y &lt;=m;
@@ -69,8 +69,8 @@ static boolean dfs(int x, int y){
     return false;
 }
 </code></pre>
-<h5 id="到此简单的深度搜索就完成了就是暴力">到此,简单的深度搜索就完成了(就是暴力)</h5>
-<h5 id="如果要搜索最短路径-只需该亿点点代码就ok了">如果要搜索最短路径, 只需该亿点点代码就ok了</h5>
+<h4 id="到此简单的深度搜索就完成了就是暴力">到此,简单的深度搜索就完成了(就是暴力)</h4>
+<h4 id="如果要搜索最短路径-只需该亿点点代码就ok了">如果要搜索最短路径, 只需该亿点点代码就ok了</h4>
 <pre><code class="language-java">int now = 0, min = 0x3f3f3f3f;		//now表示当前路径长度,min表示最短的
 </code></pre>
 <pre><code class="language-java">//算上起点的距离,不算终点的距离
@@ -86,21 +86,20 @@ static boolean dfs(int x, int y){
         int tx = x + dir[i][0];
         int ty = y + dir[i][1];
         if(in(tx, ty) &amp;&amp; arr[tx][ty] != '#' &amp;&amp; !flag[tx][ty]){
-			dfs(tx,ty);					//把所有点都逛一遍
+			dfs(tx,ty);		   			//把所有点都逛一遍
         }
     }
     now--;								//返回
     flag[x][y] = false;					//回溯
 }
 </code></pre>
-<p>这样就写好了!<br>
-大家快动手练习一遍吧!😉</p>
+<p>这样就写好了!😉</p>
 ]]></content>
     </entry>
     <entry>
         <title type="html"><![CDATA[阿里云端口转发配置]]></title>
-        <id>http://localhost:4000/post/aliyunPForward</id>
-        <link href="http://localhost:4000/post/aliyunPForward">
+        <id>https://wongziwing.github.io//post/aliyunPForward</id>
+        <link href="https://wongziwing.github.io//post/aliyunPForward">
         </link>
         <updated>2020-03-11T15:35:15.000Z</updated>
         <content type="html"><![CDATA[<h4 id="看一个小例子">看一个小例子.</h4>
@@ -214,8 +213,8 @@ server {
     </entry>
     <entry>
         <title type="html"><![CDATA[deepin将软件添加到启动器]]></title>
-        <id>http://localhost:4000/post/launcher</id>
-        <link href="http://localhost:4000/post/launcher">
+        <id>https://wongziwing.github.io//post/launcher</id>
+        <link href="https://wongziwing.github.io//post/launcher">
         </link>
         <updated>2019-11-27T08:41:55.000Z</updated>
         <content type="html"><![CDATA[<p>今天发现启动器的eclipse不见了<br>
@@ -245,8 +244,8 @@ Categories=IDE;                     # 在启动器中的分类
     </entry>
     <entry>
         <title type="html"><![CDATA[java之基本反射]]></title>
-        <id>http://localhost:4000/post/simple-reflection</id>
-        <link href="http://localhost:4000/post/simple-reflection">
+        <id>https://wongziwing.github.io//post/simple-reflection</id>
+        <link href="https://wongziwing.github.io//post/simple-reflection">
         </link>
         <updated>2019-11-24T04:57:46.000Z</updated>
         <summary type="html"><![CDATA[<p>刚开始学spring,其中涉及到java反射的知识,就简单的总结一下反射的基本使用.</p>
@@ -314,8 +313,8 @@ public void setProperty(Object obj,String propertyName, Object value){
     </entry>
     <entry>
         <title type="html"><![CDATA[huffmanTree]]></title>
-        <id>http://localhost:4000/post/huffmantree</id>
-        <link href="http://localhost:4000/post/huffmantree">
+        <id>https://wongziwing.github.io//post/huffmantree</id>
+        <link href="https://wongziwing.github.io//post/huffmantree">
         </link>
         <updated>2019-11-07T14:12:34.000Z</updated>
         <summary type="html"><![CDATA[<p>前几天上课讲了huffmanTree树的实现原理<br>
@@ -432,8 +431,8 @@ public void printAllNode(Node root){
     </entry>
     <entry>
         <title type="html"><![CDATA[linux控制台艺术字]]></title>
-        <id>http://localhost:4000/post/linux控制台艺术字</id>
-        <link href="http://localhost:4000/post/linux控制台艺术字">
+        <id>https://wongziwing.github.io//post/linux控制台艺术字</id>
+        <link href="https://wongziwing.github.io//post/linux控制台艺术字">
         </link>
         <updated>2019-10-31T14:29:06.000Z</updated>
         <content type="html"><![CDATA[<h5>sudo apt-get install figlet</h5>
@@ -453,8 +452,8 @@ public void printAllNode(Node root){
     </entry>
     <entry>
         <title type="html"><![CDATA[Hello Gridea]]></title>
-        <id>http://localhost:4000/post/hello-gridea</id>
-        <link href="http://localhost:4000/post/hello-gridea">
+        <id>https://wongziwing.github.io//post/hello-gridea</id>
+        <link href="https://wongziwing.github.io//post/hello-gridea">
         </link>
         <updated>2018-12-11T16:00:00.000Z</updated>
         <summary type="html"><![CDATA[<p>👏  欢迎使用 <strong>Gridea</strong> ！<br>
