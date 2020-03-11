@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://wongziwing.github.io/</id>
     <title>thank</title>
-    <updated>2020-03-11T02:41:02.344Z</updated>
+    <updated>2020-03-11T13:20:54.431Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://wongziwing.github.io/"/>
     <link rel="self" href="https://wongziwing.github.io//atom.xml"/>
@@ -93,7 +93,8 @@ static boolean dfs(int x, int y){
     flag[x][y] = false;					//回溯
 }
 </code></pre>
-<p>这样就写好了!</p>
+<p>这样就写好了!<br>
+大家快动手练习一遍吧!😉</p>
 ]]></content>
     </entry>
     <entry>
