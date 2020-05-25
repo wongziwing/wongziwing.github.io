@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://wongziwing.github.io/</id>
     <title>thank</title>
-    <updated>2020-05-25T05:54:48.149Z</updated>
+    <updated>2020-05-25T05:55:39.225Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://wongziwing.github.io/"/>
     <link rel="self" href="https://wongziwing.github.io//atom.xml"/>
@@ -147,7 +147,7 @@ static void dfs(int x, int y){
 <p>注释的参数 不知道是什么意思 自己百度就ok</p>
 </blockquote>
 <blockquote>
-<p>设置代理路径 <code>xxx.com.8080</code></p>
+<p>设置代理路径 <code>xxx.com:8080</code></p>
 </blockquote>
 <blockquote>
 <p>我的理解是 它可以接受 <code>*.xxx.com</code> , 然后再在 <code>nginx</code> 中判断你传入的是什么三级域名, 在做转发处理</p>
