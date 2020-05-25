@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://wongziwing.github.io/</id>
     <title>thank</title>
-    <updated>2020-03-12T09:52:06.195Z</updated>
+    <updated>2020-05-25T05:54:48.149Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://wongziwing.github.io/"/>
     <link rel="self" href="https://wongziwing.github.io//atom.xml"/>
@@ -107,6 +107,9 @@ static void dfs(int x, int y){
 <p>服务器ip. <code>1.1.1.1</code></p>
 <p>域名. <code>xxx.com</code></p>
 <p>众所周知,直接访问域名会访问服务器的80端口. 如果要访问8080端口,就要加上端口号, 如 <code>xxx.com:8080</code> 但是这样太麻烦且不切实际. 仔细想想, 我们访问别人网站的时候, 并没有输入端口号, 而是通过类似 <code>test.xxx.com</code> 这样的域名, 前面的 <code>test</code> 就是我们需要设置的三级域名.</p>
+<blockquote>
+<p>登录阿里云</p>
+</blockquote>
 <blockquote>
 <p>本实例安全组 -&gt; 添加安全组规则 填写需要开放的端口(8080)和授权对象(一般为0.0.0.0/0)</p>
 </blockquote>
